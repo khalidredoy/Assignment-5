@@ -5,6 +5,7 @@ import TechnologySection from "./components/TechnologySection";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
       <Navbar />
       <Banner />
       <TechnologySection />
-
+      <Footer />
       <ToastContainer position="top-right" />
     </>
   );

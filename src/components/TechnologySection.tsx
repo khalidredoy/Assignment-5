@@ -23,49 +23,38 @@ const TechnologySection = () => {
       });
   }, []);
 
- 
-const handleAddToStack = (technology: Technology) => {
-  const alreadyAdded = stack.some(
-    (item) => item.id === technology.id
-  );
+  const handleAddToStack = (technology: Technology) => {
+    const alreadyAdded = stack.some((item) => item.id === technology.id);
 
-  if (alreadyAdded) {
-    toast.warning(`${technology.name} is already in your stack!`);
-    return;
-  }
+    if (alreadyAdded) {
+      toast.warning(`${technology.name} is already in your stack!`);
+      return;
+    }
 
-  setStack((prevStack) => [...prevStack, technology]);
+    setStack((prevStack) => [...prevStack, technology]);
 
-  toast.success(`${technology.name} added to your stack!`);
-};
+    toast.success(`${technology.name} added to your stack!`);
+  };
 
- 
- const handleRemoveFromStack = (id: string) => {
-  const removedTechnology = stack.find(
-    (item) => item.id === id
-  );
+  const handleRemoveFromStack = (id: string) => {
+    const removedTechnology = stack.find((item) => item.id === id);
 
-  setStack((prevStack) =>
-    prevStack.filter((item) => item.id !== id)
-  );
+    setStack((prevStack) => prevStack.filter((item) => item.id !== id));
 
-  if (removedTechnology) {
-    toast.success(
-      `${removedTechnology.name} removed from your stack!`
-    );
-  }
-};
+    if (removedTechnology) {
+      toast.success(`${removedTechnology.name} removed from your stack!`);
+    }
+  };
 
-  
- const handleRemoveAll = () => {
-  if (stack.length === 0) {
-    return;
-  }
+  const handleRemoveAll = () => {
+    if (stack.length === 0) {
+      return;
+    }
 
-  setStack([]);
+    setStack([]);
 
-  toast.success("All technologies removed from your stack!");
-};
+    toast.success("All technologies removed from your stack!");
+  };
 
   if (loading) {
     return <p>Loading...</p>;
@@ -82,22 +71,17 @@ const handleAddToStack = (technology: Technology) => {
       </p>
 
       <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-4">
-
-       
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:col-span-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:col-span-3 lg:grid-cols-3">
           {technologies.map((technology) => (
             <TechnologyCard
               key={technology.id}
               technology={technology}
               onAddToStack={handleAddToStack}
-              isAdded={stack.some(
-                (item) => item.id === technology.id
-              )}
+              isAdded={stack.some((item) => item.id === technology.id)}
             />
           ))}
         </div>
 
-        
         <div>
           <YourStack
             stack={stack}
@@ -105,7 +89,6 @@ const handleAddToStack = (technology: Technology) => {
             onRemoveAll={handleRemoveAll}
           />
         </div>
-
       </div>
     </section>
   );
