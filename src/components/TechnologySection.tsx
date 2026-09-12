@@ -22,8 +22,29 @@ const TechnologySection = () => {
       });
   }, []);
 
+ 
   const handleAddToStack = (technology: Technology) => {
+    const alreadyAdded = stack.some(
+      (item) => item.id === technology.id
+    );
+
+    if (alreadyAdded) {
+      return;
+    }
+
     setStack((prevStack) => [...prevStack, technology]);
+  };
+
+ 
+  const handleRemoveFromStack = (id: string) => {
+    setStack((prevStack) =>
+      prevStack.filter((item) => item.id !== id)
+    );
+  };
+
+  
+  const handleRemoveAll = () => {
+    setStack([]);
   };
 
   if (loading) {
@@ -41,19 +62,30 @@ const TechnologySection = () => {
       </p>
 
       <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-4">
-        <div className="lg:col-span-3 grid grid-cols-1 gap-6 md:grid-cols-2">
+
+       
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:col-span-3">
           {technologies.map((technology) => (
             <TechnologyCard
               key={technology.id}
               technology={technology}
               onAddToStack={handleAddToStack}
+              isAdded={stack.some(
+                (item) => item.id === technology.id
+              )}
             />
           ))}
         </div>
 
+        
         <div>
-          <YourStack stack={stack} />
+          <YourStack
+            stack={stack}
+            onRemove={handleRemoveFromStack}
+            onRemoveAll={handleRemoveAll}
+          />
         </div>
+
       </div>
     </section>
   );
