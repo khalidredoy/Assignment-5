@@ -57,17 +57,16 @@ const TechnologyCard = ({
       </div>
 
       
-      <button
-        onClick={() => onAddToStack(technology)}
-        disabled={isAdded}
-        className={`mt-4 w-full rounded-lg py-2.5 text-sm font-medium text-white ${
-          isAdded
-            ? "cursor-not-allowed bg-gray-400"
-            : "bg-gray-900"
-        }`}
-      >
-        {isAdded ? "✓ Added to Stack" : "Add to Stack"}
-      </button>
+    <button
+  onClick={() => onAddToStack(technology)}
+  className={`mt-4 w-full rounded-lg py-2.5 text-sm font-medium text-white ${
+    isAdded
+      ? "bg-gray-400"
+      : "bg-gray-900"
+  }`}
+>
+  {isAdded ? "✓ Added to Stack" : "Add to Stack"}
+</button>
 
     </div>
   );

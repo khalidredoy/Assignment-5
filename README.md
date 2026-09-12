@@ -1,6 +1,6 @@
 Name of your project: Dev Stack.
 A little description: Dev Stack is an interactive web platform designed to help developers explore, compare, and build their ideal technology stack for their next software projects.
-Technology that you use: React.js,TypeScript,Tailwind CSS,DaisyUI,JavaScript (ES6+),React-Toastify (NPM Package),JSON (for technology data),Vite (build tool).
+Technology that you use: React.js,TypeScript,Tailwind CSS,DaisyUI,JavaScript (ES6+),React-Toastify (NPM Package),JSON (for technology data),Vite (build tool), react-toastify.
 3 features about your project:Interactive Tech Stack Selection,Categorized Technology Exploration & Filtering,User Authentication & Personalized Profiles.
 
 

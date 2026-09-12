@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import type { Technology } from "../types/technology";
 import TechnologyCard from "./TechnologyCard";
 import YourStack from "./YourStack";
+import { toast } from "react-toastify";
 
 const TechnologySection = () => {
   const [technologies, setTechnologies] = useState<Technology[]>([]);
@@ -23,29 +24,48 @@ const TechnologySection = () => {
   }, []);
 
  
-  const handleAddToStack = (technology: Technology) => {
-    const alreadyAdded = stack.some(
-      (item) => item.id === technology.id
-    );
+const handleAddToStack = (technology: Technology) => {
+  const alreadyAdded = stack.some(
+    (item) => item.id === technology.id
+  );
 
-    if (alreadyAdded) {
-      return;
-    }
+  if (alreadyAdded) {
+    toast.warning(`${technology.name} is already in your stack!`);
+    return;
+  }
 
-    setStack((prevStack) => [...prevStack, technology]);
-  };
+  setStack((prevStack) => [...prevStack, technology]);
+
+  toast.success(`${technology.name} added to your stack!`);
+};
 
  
-  const handleRemoveFromStack = (id: string) => {
-    setStack((prevStack) =>
-      prevStack.filter((item) => item.id !== id)
+ const handleRemoveFromStack = (id: string) => {
+  const removedTechnology = stack.find(
+    (item) => item.id === id
+  );
+
+  setStack((prevStack) =>
+    prevStack.filter((item) => item.id !== id)
+  );
+
+  if (removedTechnology) {
+    toast.success(
+      `${removedTechnology.name} removed from your stack!`
     );
-  };
+  }
+};
 
   
-  const handleRemoveAll = () => {
-    setStack([]);
-  };
+ const handleRemoveAll = () => {
+  if (stack.length === 0) {
+    return;
+  }
+
+  setStack([]);
+
+  toast.success("All technologies removed from your stack!");
+};
 
   if (loading) {
     return <p>Loading...</p>;

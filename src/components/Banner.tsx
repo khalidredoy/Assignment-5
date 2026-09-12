@@ -8,7 +8,15 @@ const Banner = () => {
           <h1 className="text-5xl font-bold leading-tight text-gray-900">
             Build Your Ideal
             <br />
-            <span className="text-pink-500">Development Stack</span>
+            <span
+              style={{
+                background: "var(--brand-gradient)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              Development Stack
+            </span>
           </h1>
 
           <p className="mt-6 max-w-xl text-lg leading-8 text-gray-500">
